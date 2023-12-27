@@ -99,9 +99,7 @@ public class Main {
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node_ = nodeList.item(i);
             if (Node.TEXT_NODE != node_.getNodeType()) {
-                //System. out.println("Текущий узел: " + node_.getNodeName());
                 Element element = (Element) node_;
-                //employee = new Employee();
                 values.setId(Long.parseLong(element.getElementsByTagName("id").item(0).getTextContent()));
                 values.setFirstName(element.getElementsByTagName("firstName").item(0).getTextContent());
                 values.setLastName(element.getElementsByTagName("lastName").item(0).getTextContent());
