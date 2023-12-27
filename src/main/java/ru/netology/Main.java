@@ -73,7 +73,6 @@ public class Main {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        counter++;
     }
 
     public static List<Employee> parseXML(String file) {
@@ -94,10 +93,8 @@ public class Main {
             throw new RuntimeException(e);
         }
         Node root = doc.getDocumentElement();
-        System.out.println("Корневой элемент: " + root.getNodeName());
 
         NodeList nodeList = root.getChildNodes();
-        //System.out.println(nodeList);
         Employee values = new Employee();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node_ = nodeList.item(i);
