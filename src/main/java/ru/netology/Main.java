@@ -16,6 +16,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,13 +25,12 @@ public class Main {
     public static void main(String[] args) {
         int counter = 1;
         String[] columnMapping = {"id", "firstName", "lastName", "country", "age"};
-        String fileName = "D:\\Учеба\\JAVA\\Progi\\Core\\csv_parser\\src\\main\\java\\ru\\netology\\data.csv";
-        List<Employee> list = parseCSV(columnMapping, fileName);
+        List<Employee> list = parseCSV(columnMapping, Paths.get("files/data.csv").toString());
         String json = listToJson(list);
         writeString(json, counter);
         counter++;
 
-        list = parseXML("D:\\Учеба\\JAVA\\Progi\\Core\\csv_parser\\src\\main\\java\\ru\\netology\\data.xml");
+        list = parseXML(Paths.get("files/data.xml").toString());
         String toJsonson = listToJson(list);
         writeString(toJsonson, counter);
 
@@ -61,10 +62,11 @@ public class Main {
 
     public static void writeString(String file, int counter) {
         String Name = null;
+        Path path = Paths.get("files");
         if (counter != 1) {
-            Name = "D:\\Учеба\\JAVA\\Progi\\Core\\csv_parser\\src\\main\\java\\ru\\netology\\data" + counter + ".json";
+            Name = path.toString() + "/data" + counter + ".json";
         } else {
-            Name = "D:\\Учеба\\JAVA\\Progi\\Core\\csv_parser\\src\\main\\java\\ru\\netology\\data.json";
+            Name = path.toString() + "/data.json";
         }
         try (FileWriter writer = new FileWriter(Name, false)) {
             // запись всей строки
@@ -108,7 +110,6 @@ public class Main {
                 list.add(values);
             }
         }
-        System.out.println(list);
         return list;
     }
 }
